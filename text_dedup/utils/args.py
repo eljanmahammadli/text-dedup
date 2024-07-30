@@ -14,6 +14,7 @@ from datasets.utils.version import dataclass
 class IOArgs:
     path: str
     output: str
+    hf_path: str
     name: str | None = None
     data_dir: str | None = None
     data_files: str | None = None
@@ -43,6 +44,7 @@ class IOArgs:
         )
         @optgroup.option("--local/--no-local", help="Use local dataset", default=False)
         @optgroup.option("--output", type=str, help="Path to deduplicated dataset output", required=False)
+        @optgroup.option("--hf_path", type=str, help="HuggingFace path to save dataset", required=False, default=None)
         @optgroup.option("--debug/--no-debug", help="Whether to run in debug mode", default=False)
         @optgroup.option("--clean_cache/--no-clean_cache", help="Whether to remove all cache files", default=True)
         @optgroup.option(
