@@ -294,7 +294,11 @@ def main(
 
         with timer("Saving"):
             final_data = final_data.remove_columns([CLUSTER_COLUMN, INDEX_COLUMN])
+            print("Saving to disk...")
             final_data.save_to_disk(io_args.output)
+            print("Pushing to HuggingFace...")
+            if io_args.hf_path is not None:
+                final_data.push_to_hub(str(io_args.hf_path), private=True)
             if io_args.debug:
                 uf.dump(os.path.join(io_args.output, "uf.pkl"), id2id=id2id)
 
